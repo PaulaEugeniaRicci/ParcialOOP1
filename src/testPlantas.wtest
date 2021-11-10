@@ -1,0 +1,34 @@
+import Plantas.*
+import Parcelas.*
+ 
+describe "Tests de plantas"{
+	
+	test "menta da semillas" {
+		const menta1 = new Menta(anioObtencion = 2020, altura = 1)
+		assert.that(menta1.daSemillas())
+		assert.equals(3, menta1.espacioOcupado())
+	}
+	test "menta no da semillas"{
+		const menta1 = new Menta(anioObtencion = 2020, altura = 0.3)
+		assert.notThat(menta1.daSemillas())
+		assert.equals(0.9, menta1.espacioOcupado())
+	}
+	
+	test "soja"{
+		const soja = new Soja(anioObtencion= 2009, altura= 0.6)
+		assert.equals(7, soja.toleranciaSol())
+		assert.equals(0.3, soja.espacioOcupado())
+		assert.notThat(soja.daSemillas())
+	}
+	test "quinoa da semillas"{
+		const quinoa1 = new Quinoa(anioObtencion = 2001, altura = 1, toleranciaSol = 9)
+		assert.that(quinoa1.daSemillas())
+	} 
+	
+	test "menta/hierbabuena - parcela ideal"{
+		const hierbabuena = new Hierbabuena(anioObtencion = 2020, altura = 0.3)
+		const parcela = new ParcelaEcologica(ancho = 20, largo = 1, horasSol = 8)
+		assert.that(hierbabuena.parcelasIdeales(parcela))
+		
+	}
+}

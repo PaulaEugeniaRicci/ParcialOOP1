@@ -1,0 +1,26 @@
+import Plantas.*
+import Parcelas.*
+ 
+describe "Tests de parcelas"{
+	
+	test "condiciones de parcela" {
+		const parcela = new ParcelaEcologica(ancho = 20, largo = 1, horasSol = 8)
+		assert.equals(4, parcela.cantPlantasTolera())
+		assert.equals(20, parcela.superficie())
+	}
+	test "cantidad maxima para plantar"{
+		const soja = new Soja(anioObtencion = 2000, altura = 1.5)
+		const parcela = new ParcelaEcologica(ancho = 20, largo = 1, horasSol = 8)
+		parcela.agregarPlantas(soja)
+		parcela.agregarPlantas(soja)
+		parcela.agregarPlantas(soja)
+		parcela.agregarPlantas(soja)
+		assert.throwsExceptionWithMessage("error", { parcela.agregarPlantas(soja) })
+	}
+	test "no tiene complicaciones"{
+		const parcela = new ParcelaEcologica(ancho = 20, largo = 1, horasSol = 8)
+		assert.notThat(parcela.tieneComplicaciones())
+	}
+	
+}
+
