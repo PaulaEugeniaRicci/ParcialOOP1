@@ -31,13 +31,12 @@ class Parcela {
 }
 class ParcelaEcologica inherits Parcela{
 	override method seAsociaBien(planta){
-		return self.tieneComplicaciones() and planta.parcelasIdeales(self)
+		return !self.tieneComplicaciones() and planta.parcelasIdeales(self)
 	}
 }
 class ParcelaIndustrial inherits Parcela{
 	override method seAsociaBien(planta){
-		return self.cantPlantasTolera()<2 and planta.esFuerte()
-		//"hasta 2 plantas ya plantadas, 1 más aparte de la que se quiera plantar"
+		return self.cantPlantasTolera()<=2 and planta.esFuerte()
 	}
 }
 
